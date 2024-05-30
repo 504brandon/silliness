@@ -9,6 +9,7 @@ namespace SillyMenu.Menu
         public static ButtonInfo[][] buttons = new ButtonInfo[][]
         {
             new ButtonInfo[] { // Main Mods
+                new ButtonInfo { buttonText = "menu version: " + PluginInfo.Version, isTogglable = false},
                 new ButtonInfo { buttonText = "settings", method =() => SettingsMods.EnterSettings(), isTogglable = false, toolTip = "settitings"},
                 new ButtonInfo { buttonText = "movement mods", method =() => Global.MovementMods(), isTogglable = false},
                 new ButtonInfo { buttonText = "miscellaneous mods", method =() => Global.MiscellaneousMods(), isTogglable = false},
@@ -45,13 +46,17 @@ namespace SillyMenu.Menu
                 new ButtonInfo { buttonText = "slippery hands <color=white>[</color><color=green>R</color><color=white>]</color>", method =() => Movement.SlipperyHands(), toolTip = "dude i cant play like this"},
                 new ButtonInfo { buttonText = "grippy hands <color=white>[</color><color=green>R</color><color=white>]</color>", method =() => Movement.GrippyHands(), toolTip = "you wanna see how good i am at ice?"},
                 new ButtonInfo { buttonText = "zero gravity <color=white>[</color><color=green>R</color><color=white>]</color>", method =() => Movement.ZeroGravity(), toolTip = "WHAT THE FUCK IM FLOATING"},
-                new ButtonInfo { buttonText = "rig gun <color=white>[</color><color=green>R</color><color=white>]</color>", method =() => Movement.RigGun(), toolTip = "dude im insane at the game"},
+                new ButtonInfo { buttonText = "rig gun <color=white>[</color><color=green>R</color><color=white>]</color>", method =() => Movement.RigGun(), toolTip = "you wanna see how good i am at lucio running?"},
+                new ButtonInfo { buttonText = "grab rig <color=white>[</color><color=green>R</color><color=white>]</color>", method =() => Movement.GrabRig(), toolTip = "haha look at me im in your face"},
             },
 
             new ButtonInfo[] { // Miscellaneous Mods
                 new ButtonInfo { buttonText = "return to main", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "main page"},
                 new ButtonInfo { buttonText = "bring gliders", method =() => Miscellaneous.BringGliders(),  toolTip = "free glider real"},
                 new ButtonInfo { buttonText = "pink snowballs", method =() => Miscellaneous.PinkSnowballs(), toolTip = "HOLY SHIT PINK SNOWBALLS"},
+                new ButtonInfo { buttonText = "head spin x axis <color=white>[</color><color=green>R</color><color=white>]</color>", method =() => Miscellaneous.HeadSpinXAxis(), toolTip = "MY NECK! MY NECK!!!"},
+                new ButtonInfo { buttonText = "head spin y axis <color=white>[</color><color=green>R</color><color=white>]</color>", method =() => Miscellaneous.HeadSpinYAxis(), toolTip = "MY NECK IS BROKEN!!!"},
+                new ButtonInfo { buttonText = "head spin z axis <color=white>[</color><color=green>R</color><color=white>]</color>", method =() => Miscellaneous.HeadSpinZAxis(), toolTip = "MY NECK IS STILL BROKEN!!!"},
                 new ButtonInfo { buttonText = "materialize water balloon", method =() => Miscellaneous.materializewaterballoon(), toolTip = "begone"},
                 new ButtonInfo { buttonText = "materialize rock balloon", method =() => Miscellaneous.materializerockballoon(), toolTip = "IVE HAD IT *tosses a rock at you*"},
                 new ButtonInfo { buttonText = "materialize present balloon", method =() => Miscellaneous.materializepresentballoon(), toolTip = "GET IN THE CHRISTMAS SPIRIT DAMNIT"},

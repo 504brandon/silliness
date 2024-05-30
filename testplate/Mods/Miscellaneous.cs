@@ -99,5 +99,44 @@ namespace SillyMenu.Mods
             }
             lastthing = thing;
         }
+        public static void HeadSpinXAxis()
+        {
+            if (ControllerInputPoller.instance.rightGrab)
+            {
+                VRMap head = GorillaTagger.Instance.offlineVRRig.head;
+                head.trackingRotationOffset.x = head.trackingRotationOffset.x + 10f;
+            }
+            else
+            {
+                VRMap head = GorillaTagger.Instance.offlineVRRig.head;
+                head.trackingRotationOffset.x = 0f;
+            }
+        }
+        public static void HeadSpinYAxis()
+        {
+            if (ControllerInputPoller.instance.rightGrab)
+            {
+                VRMap head = GorillaTagger.Instance.offlineVRRig.head;
+                head.trackingRotationOffset.y = head.trackingRotationOffset.y + 10f;
+            }
+            else
+            {
+                VRMap head = GorillaTagger.Instance.offlineVRRig.head;
+                head.trackingRotationOffset.y = 0f;
+            }
+        }
+        public static void HeadSpinZAxis()
+        {
+            if (ControllerInputPoller.instance.rightGrab)
+            {
+                VRMap head = GorillaTagger.Instance.offlineVRRig.head;
+                head.trackingRotationOffset.z = head.trackingRotationOffset.z + 10f;
+            }
+            else
+            {
+                VRMap head = GorillaTagger.Instance.offlineVRRig.head;
+                head.trackingRotationOffset.z = 0f;
+            }
+        }
     }
 }

@@ -9,6 +9,7 @@ using System;
 using System.Collections.Specialized;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -144,9 +145,18 @@ namespace SillyMenu.Mods
                 GorillaTagger.Instance.offlineVRRig.enabled = true;
             }
         }
-        public static void HeadSpinXAxis()
+        public static void GrabRig()
         {
-
+            if (ControllerInputPoller.instance.rightGrab)
+            {
+                GorillaTagger.Instance.offlineVRRig.enabled = false;
+                GorillaTagger.Instance.offlineVRRig.transform.position = GorillaLocomotion.Player.Instance.rightControllerTransform.position;
+                GorillaTagger.Instance.offlineVRRig.transform.rotation = GorillaLocomotion.Player.Instance.rightControllerTransform.rotation;
+            }
+            else
+            {
+                GorillaTagger.Instance.offlineVRRig.enabled = true;
+            }
         }
     }
 }

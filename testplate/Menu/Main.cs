@@ -111,6 +111,143 @@ namespace SillyMenu.Menu
             {
                 Debug.LogError(string.Format("{0} // Error with executing mods at {1}: {2}", PluginInfo.Name, exc.StackTrace, exc.Message));
             }
+            if (!hasFoundAllBoards)
+            {
+                try
+                {
+                    UnityEngine.Debug.Log("Looking for boards");
+                    bool found = false;
+                    int indexOfThatThing = 0;
+                    for (int i = 0; i < GameObject.Find("Environment Objects/LocalObjects_Prefab/TreeRoom").transform.childCount; i++)
+                    {
+                        GameObject v = GameObject.Find("Environment Objects/LocalObjects_Prefab/TreeRoom").transform.GetChild(i).gameObject;
+                        if (v.name.Contains("forestatlas"))
+                        {
+                            indexOfThatThing++;
+                            if (indexOfThatThing == 1)
+                            {
+                                found = true;
+                                v.GetComponent<Renderer>().material = OrangeUI;
+                                OrangeUI.color = Settings.backgroundColor.colors[0].color;
+                                if (themeNumber == 7)
+                                {
+                                    OrangeUI.color = new Color(0.357f, 0.349f, 1f);
+                                }
+                            }
+                        }
+                    }
+
+                    bool found2 = false;
+                    indexOfThatThing = 0;
+                    for (int i = 0; i < GameObject.Find("Environment Objects/LocalObjects_Prefab/Forest").transform.childCount; i++)
+                    {
+                        GameObject v = GameObject.Find("Environment Objects/LocalObjects_Prefab/Forest").transform.GetChild(i).gameObject;
+                        if (v.name.Contains("forestatlas"))
+                        {
+                            indexOfThatThing++;
+                            if (indexOfThatThing == 8)
+                            {
+                                UnityEngine.Debug.Log("Board found");
+                                found2 = true;
+                                v.GetComponent<Renderer>().material = OrangeUI;
+                                OrangeUI.color = Settings.backgroundColor.colors[0].color;
+                                if (themeNumber == 7)
+                                {
+                                    OrangeUI.color = new Color(0.357f, 0.349f, 1f);
+                                }
+                            }
+                        }
+                    }
+                    if (found && found2)
+                    {
+                        string[] boards = new string[] {
+                                    "canyon",
+                                    "cosmetics",
+                                    "cave",
+                                    "forest",
+                                    "skyjungle"
+                                };
+                        foreach (string name in boards)
+                        {
+                            GameObject board = GameObject.Find("Environment Objects/LocalObjects_Prefab/TreeRoom/TreeRoomInteractables/Wall Monitors Screens/wallmonitor" + name);
+                            if (board != null)
+                            {
+                                board.GetComponent<Renderer>().material = OrangeUI;
+                                OrangeUI.color = Settings.backgroundColor.colors[0].color;
+                                if (themeNumber == 7)
+                                {
+                                    OrangeUI.color = new Color(0.357f, 0.349f, 1f);
+                                }
+                                try
+                                {
+                                    board.GetComponent<GorillaLevelScreen>().goodMaterial = OrangeUI;
+                                    board.GetComponent<GorillaLevelScreen>().badMaterial = OrangeUI;
+                                }
+                                catch { }
+                            }
+                        }
+                        hasFoundAllBoards = true;
+                        UnityEngine.Debug.Log("Found all boards");
+                    }
+                }
+                catch (Exception exception)
+                {
+                    UnityEngine.Debug.LogError(string.Format("iiMenu <b>COLOR ERROR</b> {1} - {0}", exception.Message, exception.StackTrace));
+                    hasFoundAllBoards = false;
+                }
+            }
+
+            try
+            {
+                GameObject computerMonitor = GameObject.Find("Environment Objects/LocalObjects_Prefab/TreeRoom/TreeRoomInteractables/GorillaComputerObject/ComputerUI/monitor/monitorScreen");
+                if (computerMonitor != null)
+                {
+                    computerMonitor.GetComponent<Renderer>().material = OrangeUI;
+                    OrangeUI.color = Settings.backgroundColor.colors[0].color;
+                    if (themeNumber == 7)
+                    {
+                        OrangeUI.color = new Color(0.357f, 0.349f, 1f);
+                    }
+                }
+            }
+            catch { }
+
+            try
+            {
+                GameObject motdText = GameObject.Find("Environment Objects/LocalObjects_Prefab/TreeRoom/TreeRoomInteractables/UI/motd");
+                Text motdTC = motdText.GetComponent<Text>();
+                RectTransform motdTRC = motdText.GetComponent<RectTransform>();
+                motdTC.supportRichText = true;
+                motdTC.fontSize = 24;
+                motdTC.font = currentFont;
+                motdTC.fontStyle = FontStyle.Italic;
+                motdTC.text = "thank you for using silly menu";
+                motdTC.color = Settings.textColors[0];
+                motdTC.horizontalOverflow = UnityEngine.HorizontalWrapMode.Overflow;
+                motdTRC.sizeDelta = new Vector2(379.788f, 155.3812f);
+                motdTRC.localScale = new Vector3(0.00395f, 0.00395f, 0.00395f);
+
+                GameObject myfavorite = GameObject.Find("Environment Objects/LocalObjects_Prefab/TreeRoom/TreeRoomInteractables/UI/motd/motdtext");
+                Text motdTextB = myfavorite.GetComponent<Text>();
+                RectTransform transformation = myfavorite.GetComponent<RectTransform>();
+                transformation.localPosition = new Vector3(-184.4942f, -110.3492f, -0.0006f);
+                motdTextB.supportRichText = true;
+                motdTextB.fontSize = 54;
+                motdTextB.font = currentFont;
+                motdTextB.color = Settings.textColors[0];
+                motdTextB.fontStyle = FontStyle.Italic;
+                //motdTextB.horizontalOverflow = UnityEngine.HorizontalWrapMode.Overflow;
+                transformation.sizeDelta = new Vector2(1250f, 700f);
+                transformation.localScale = new Vector3(0.2281f, 0.2281f, 0.2281f);
+                motdTextB.text = "you are using version " + PluginInfo.Version +
+                " this menu was created by adlibs (@adlibsreal) on discord " +
+                "this menu is completely free and open sourced, if you paid for " +
+                "this menu you have been scammed, and your stupid there are " +
+                "17 mods on this menu. <color=red>i am not responsible " +
+                "for any bans using this menu, be silly at your own risk people!</color> " +
+                "if you get banned while using this, it's your responsibility";
+            }
+            catch { }
         }
 
         // Functions
@@ -955,6 +1092,8 @@ namespace SillyMenu.Menu
         public static Text menuName;
         public static bool EverythingSlippery = false;
         public static bool EverythingGrippy = false;
+        public static bool hasFoundAllBoards = false;
+        public static Material OrangeUI = new Material(Shader.Find("GorillaTag/UberShader"));
 
 
         // Data
