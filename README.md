@@ -1,2 +1,2 @@
-# silly menu
+# silliness
 stupid fucking idiot
