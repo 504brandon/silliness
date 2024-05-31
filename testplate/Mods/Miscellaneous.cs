@@ -34,8 +34,8 @@ namespace SillyMenu.Mods
             foreach (SnowballThrowable snowball in UnityEngine.GameObject.FindObjectsOfType<SnowballThrowable>())
             {
                 snowball.randomizeColor = true;
-                GorillaTagger.Instance.offlineVRRig.SetThrowableProjectileColor(false, new Color32(254, 124, 227, 255));
-                GorillaTagger.Instance.offlineVRRig.SetThrowableProjectileColor(true, new Color32(254, 124, 227, 255));
+                GorillaTagger.Instance.offlineVRRig.LeftThrowableProjectileColor = new Color32(254, 124, 227, 255);
+                GorillaTagger.Instance.offlineVRRig.RightThrowableProjectileColor = new Color32(254, 124, 227, 255);
             }
         }
         public static bool lastthing = false;
